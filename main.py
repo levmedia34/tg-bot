@@ -9,9 +9,11 @@ CHAT_ID = os.getenv("MANAGER_CHAT_ID")
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
-# Клавиатура с кнопкой "Оставить заявку"
-keyboard = ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard.add(KeyboardButton("Оставить заявку"))
+# ✅ Исправленная клавиатура
+keyboard = ReplyKeyboardMarkup(
+    keyboard=[[KeyboardButton(text="Оставить заявку")]], 
+    resize_keyboard=True
+)
 
 @dp.message(lambda message: message.text == "/start")
 async def start(message: types.Message):
