@@ -6,10 +6,12 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("MANAGER_CHAT_ID")
 
+CHAT_ID = int(CHAT_ID)
+
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
-# ✅ Исправленная клавиатура
+
 keyboard = ReplyKeyboardMarkup(
     keyboard=[[KeyboardButton(text="Оставить заявку")]], 
     resize_keyboard=True
@@ -26,6 +28,9 @@ async def request_info(message: types.Message):
 @dp.message()
 async def receive_request(message: types.Message):
     text = f"📩 Новая заявка от @{message.from_user.username} ({message.from_user.id}):\n\n{message.text}"
+    
+    print(f"Отправка сообщения в чат: {CHAT_ID}")
+    
     await bot.send_message(CHAT_ID, text)
     await message.answer("Спасибо за информацию о вашем проекте! Мы приняли вашу заявку и скоро с вами свяжемся!", reply_markup=keyboard)
 
