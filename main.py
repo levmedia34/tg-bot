@@ -6,7 +6,7 @@ from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("MANAGER_CHAT_ID")
 
-CHAT_ID = int(CHAT_ID)
+CHAT_ID = 1002636835842
 
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
